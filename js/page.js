@@ -43,11 +43,15 @@ class Page {
         
     }
     searchUsers(){
+        let index = 0;
+        this.matched = [];
        this.users.forEach(user=>{
            const matched = user.name.toLowerCase().includes(this.searchBox.value.toLowerCase());
            if(matched){
                user.card.style.display = '';
                this.matched.push(user);
+               user.matchedIndex = index;
+               index++;
            }else{
                user.card.style.display = 'none';
            }

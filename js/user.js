@@ -66,14 +66,28 @@ class User {
                 if(event.target.id==='modal-close-btn'){
                     this.modal.style.display = 'none';
                 }else if(event.target.id==='previous-btn'){
-                    if(this.cardNumber!==0){
-                        this.modal.style.display = 'none';
-                        page.users[this.cardNumber-1].modal.style.display = '';
+                    if(page.searching===false){
+                        if(this.cardNumber!==0){
+                            this.modal.style.display = 'none';
+                            page.users[this.cardNumber-1].modal.style.display = '';
+                        }
+                    }else if(page.searching){
+                        if(this.matchedIndex!==0){
+                            this.modal.style.display = 'none';
+                            page.matched[this.matchedIndex-1].modal.style.display = '';
+                        }
                     }
                 }else if(event.target.id==='next-btn'){
-                    if(this.cardNumber!==11){
-                        this.modal.style.display = 'none';
-                        page.users[this.cardNumber+1].modal.style.display = '';
+                    if(page.searching===false){
+                        if(this.cardNumber!==11){
+                            this.modal.style.display = 'none';
+                            page.users[this.cardNumber+1].modal.style.display = '';
+                        }
+                    }else if(page.searching){
+                        if(this.matchedIndex<page.matched.length-1){
+                            this.modal.style.display = 'none';
+                            page.matched[this.matchedIndex+1].modal.style.display = '';
+                        }
                     }
                 }
             })
@@ -116,7 +130,7 @@ class User {
         const address = this.makeElement('p', 'modal-text', this.address);
         modalInfoContainer.appendChild(address);
         //                        <p class="modal-text">Birthday: 10/21/2015</p>
-        const bDay = this.makeElement('p','modal-text', `Birthday: ${this.birthday}`);
+        const bDay = this.makeElement('p','modal-text', `Birthday: ${this.formattedDate}`);
         modalInfoContainer.appendChild(bDay);
         
         // <div class="modal-btn-container">
@@ -131,4 +145,26 @@ class User {
         btnContainer.appendChild(nextButton);
         // <button type="button" id="modal-next" class="modal-next btn">Next</button>
         }
+    get formattedDate(){
+        const year = this.birthday.slice(0,4);
+        const month = this.month(this.birthday.slice(5,7));
+        const day = this.birthday.slice(8);
+        return `${day} ${month} ${year}`
+    }
+    month(date){
+        switch(date){
+            case '01':return 'JAN';
+            case '02':return 'FEB';
+            case '03':return 'MAR';
+            case '04':return 'APR';
+            case '05':return 'MAY';
+            case '06':return 'JUN';
+            case '07':return 'JUL';
+            case '08':return 'AUG';
+            case '09':return 'SEPT';
+            case '10':return 'OCT';
+            case '11':return 'NOV';
+            case '12':return 'DEC';
+        }
+    }
 }
