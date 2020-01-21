@@ -16,7 +16,7 @@ html, body {
 body {
     font-family: "Nunito", sans-serif;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background: rgba(248, 238, 193, 0.9);
 }
 
 header {
@@ -93,6 +93,7 @@ header h1 {
     transition: .4s ease-out;
     overflow: hidden;
 }
+    
 
 .card-img {
     width: 95px;
@@ -246,8 +247,9 @@ header h1 {
 @media (min-width: 1024px) {
 
     .card:hover {
-        background: rgba(255, 255, 255, 1);
-        border: 1px solid rgba(50, 50, 50, 0.9);
+        background:lightskyblue;;
+        border: 10px solid rgba(50, 50, 50, 0.9);
+        border-radius: 20%;
     }
 
     .card:hover .card-text {
@@ -257,5 +259,6 @@ header h1 {
     .btn:hover {
         background: rgba(255, 255, 255, 1);
         color: rgba(25, 25, 25, 1); 
+        border: solid 3px lightskyblue;
     }
 }
